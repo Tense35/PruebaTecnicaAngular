@@ -1,0 +1,92 @@
+<div class="d-flex h-100 flex-column align-items-center justify-content-between">
+    <h2 *ngIf="data.isUpdate" mat-dialog-title class="color-primary fs-4">
+        Editar canción con id: {{ data?.music?.id }}
+    </h2>
+    <h2 *ngIf="!data.isUpdate" mat-dialog-title class="color-primary fs-4">
+        Agregar canción
+    </h2>
+    
+    <div mat-dialog-content class="overflow-hidden h-100 w-100 d-flex justify-content-around flex-column align-items-center">
+
+        <form autoComplete="off" [formGroup]="musicForm" class="d-flex flex-column w-100">
+            <mat-form-field appearance="fill">
+                <mat-label>Identificador</mat-label>
+                <input 
+                    matInput
+                    [value]="this.identificator"
+                    formControlName="id"
+                >
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Artista</mat-label>
+                <input 
+                    matInput 
+                    placeholder="Nombre del artista"
+                    formControlName="artista"
+                >
+                <mat-error>Este valor es requerido.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre de la canción</mat-label>
+                <input 
+                    matInput 
+                    placeholder="Nombre de la canción"
+                    formControlName="cancion"
+                >
+                <mat-error>Este valor es requerido.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Duración en segundos</mat-label>
+                <input 
+                    matInput
+                    type="number"
+                    placeholder="Duracion en segundos de la canción"
+                    formControlName="duracion"
+                >
+                <mat-error>Debe de ingresar la duración de la canción y debe ser mayor o igual a 0</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Álbum</mat-label>
+                <input 
+                    matInput 
+                    placeholder="Nombre del álbum"
+                    formControlName="album"
+                >
+                <mat-error>Este valor es requerido.</mat-error>
+            </mat-form-field>
+
+        </form>
+
+        <div mat-dialog-actions>
+            <button 
+                mat-button *ngIf="data.isUpdate && this.musicForm.valid" 
+                class="button-primary px-4" 
+                matTooltip="Actualizar la canción con los datos suministrados"
+                (click)="updateMusic()"
+                >
+                    Actualizar canción
+            </button>
+
+            <button 
+                mat-button 
+                *ngIf="!data.isUpdate && this.musicForm.valid" 
+                class="button-primary px-4" 
+                matTooltip="Insertar una nueva canción con los datos suministrados"
+                (click)="addMusic()">
+                    Insertar canción
+            </button>
+
+            <button 
+                mat-button class="px-5" 
+                [mat-dialog-close]="false" 
+                matTooltip="Cerrar formulario sin guardar cambios"
+                cdkFocusInitial>
+                    Cancelar
+            </button>
+        </div>
+    </div>
+</div>

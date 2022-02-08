@@ -1,0 +1,138 @@
+<div class="page-container flex-column w-100 p-5">
+    <h3>Mi lista de música</h3>
+    <div class="w-100 d-flex flex-row-reverse flex-xxl-column-reverse mt-2">
+        <div
+            class="d-flex justify-content-center align-items-center button-secundary"
+            style="width: 240px; height: 70px;"
+            matTooltip="Inserta una canción en tu lista"
+            (click)="addOrUpdateMusic()"
+        >
+            <div class="circle-center me-2">
+                <mat-icon class="material-icons-outlined"> music_note </mat-icon> 
+            </div>
+            
+            <div class="d-flex justify-content-center align-items-center">
+                <mat-label> Insertar una canción</mat-label>
+            </div>
+        </div>
+
+        <div
+            class="d-flex justify-content-center align-items-center button-secundary me-3"
+            (click)="deleteMusic()"
+            *ngIf="this.selection.selected.length > 0"
+            matTooltip="Elimina las canciones seleccionadas"
+            style="width: 240px; height: 70px;"
+        >
+            <div class="circle-center me-2">
+                <mat-icon class="material-icons-outlined"> music_off </mat-icon> 
+            </div>
+            
+            <div class="d-flex justify-content-center align-items-center">
+                <mat-label> Eliminar canciones</mat-label>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-div">
+
+        <div class="search-div">
+            <div class="d-flex justify-content-center align-items-center fs-5 fw-bold color-primary">
+                Número de canciones: {{ dataSource.data.length }}
+            </div>
+            <div class="search-input">
+                <input #txtSearch placeholder="Buscar" (keyup)="musicSearch(txtSearch.value)"/>
+                <mat-icon matSuffix class="color-primary">search</mat-icon>
+            </div>
+        </div>
+
+        <ng-container>
+            <table mat-table [dataSource]="dataSource" class="w-100 mb-2">
+
+                <ng-container matColumnDef="seleccion">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox
+                            (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        >
+                        </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let musicList">
+                        <mat-checkbox
+                            class="mb-n1"
+                            id="checkbox_{{ musicList.id }}"
+                            (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(musicList) : null"
+                            [checked]="selection.isSelected(musicList)"
+                        ></mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Id</th>
+                    <td mat-cell *matCellDef="let musicList" class="text-center">
+                        {{ musicList.id }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="artista">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Artista</th>
+                    <td mat-cell *matCellDef="let musicList">
+                        {{ musicList.artista | titlecase }}
+                    </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="cancion">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Canción</th>
+                    <td mat-cell *matCellDef="let musicList">
+                        {{ musicList.cancion | titlecase }}
+
+                    </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="duracion">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Duración</th>
+                    <td mat-cell *matCellDef="let musicList" class="text-center">
+                        {{ musicList.duracion }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="album">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Álbum</th>
+                    <td mat-cell *matCellDef="let musicList">
+                        {{ musicList.album | titlecase }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef class="text-center">Acciones</th>
+                    <td mat-cell *matCellDef="let musicList" class="text-center">
+                        <mat-icon
+                            class="action-icon"
+                            (click)="deleteMusic(musicList.id)"
+                            matTooltip="Eliminar canción"
+                        > 
+                            cancel icon 
+                        </mat-icon>
+                        <mat-icon
+                            class="action-icon ms-2"
+                            matTooltip="Editar"
+                            *ngIf="this.selection.selected.length == 0"
+                            (click)="addOrUpdateMusic(true, musicList)"
+                        > 
+                            edit 
+                        </mat-icon>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    [ngClass]="{ 'table-row-select': selection.isSelected(row)}"
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
+        </ng-container>
+    </div>
+
+</div>

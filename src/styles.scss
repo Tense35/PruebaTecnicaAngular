@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+@import "app/utils/styles/buttons.scss";
+@import "app/utils/styles/fonts.scss";
+@import "app/utils/styles/sizes.scss";
+
+html, body { 
+    height: 100%; 
+}
+
+body { 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    margin: 0; 
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.page-container-center {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-container {
+    max-width: calc(100% - 32px);
+    min-height: 70vh;
+    display: flex;
+}
+
+.module-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh;
+}
+
+// Material Styles
+
+// Color de la flecha del select
+.mat-select-arrow {
+    color: $color-primary !important;
+}
+
+// Color del borde del select cuando está enfocado
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: $color-primary !important;
+}
+
+// Color del borde del select hover
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: $color-primary !important;
+}
+
+// Color de la fuente del select cuando está enfocado
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #000 !important;
+}
+
+// Color de ondulación y tick del checkbox
+.mat-checkbox-ripple .mat-ripple-element,.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $color-primary !important;
+}
+
+// Color de ondulación y tick del checkbox
+.mat-checkbox-checked.mat-primary .mat-checkbox-background, .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background{
+    background-color: $color-primary !important;
+}
+
+// Centrar los checkbox
+.mat-checkbox-layout {
+    margin: 0px !important;
+}
+
+// Bordes de los títulos de las columnas
+tr.mat-header-row {
+    border-top: 1px solid #EAEDEF;
+    border-bottom: 1px solid #668FA0;
+}
+
+// Colores de fila y hover
+tr.mat-row {
+    &:nth-child(odd) {
+        background-color: #FFF;
+    }
+
+    &:nth-child(even) {
+        background-color: $other-color-1;
+    }
+
+    &:hover {
+        background-color: $other-color-3;
+    }
+}
+
+// Eliminar bordes de las tablas
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    border-bottom-style: none !important;
+}
+
+// Nombre de columna
+.mat-header-cell {
+    color: $color-primary;
+}
+
+.table-row-select {
+    background-color: $other-color-3 !important; 
+}

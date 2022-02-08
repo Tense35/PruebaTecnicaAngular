@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "RockoFLF";
+    src: url('../../../assets/fonts/RockoFLF.ttf');
+}
+
+@font-face {
+    font-family: "RockoFLF-Bold";
+    src: url('../../../assets/fonts/RockoFLF.ttf');
+}
+
+$font-landing: RockoFLF, Roboto, "Helvetica Neue", sans-serif;
+$font-landing-bold: RockoFLF-Bold, Roboto, "Helvetica Neue", sans-serif;
+$font-primary: Roboto, "Helvetica Neue", sans-serif;

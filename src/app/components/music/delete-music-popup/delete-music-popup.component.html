@@ -1,0 +1,25 @@
+<div class="d-flex h-100 flex-column align-items-center justify-content-between">
+    <h2 mat-dialog-title class="color-primary fs-4">Panel de confirmación</h2>
+    <div mat-dialog-content class="overflow-hidden h-100 d-flex justify-content-around flex-column align-items-center">
+        <p class="text-center fs-6">
+            ¿Estás seguro que deseas eliminar las/la canción con id: <strong class="color-primary">{{ data.musicList.join(', ')}}</strong> ?
+        </p>
+        <div mat-dialog-actions>
+            <button 
+                mat-button 
+                class="button-primary px-4" 
+                matTooltip="Eliminar la/las canciones"
+                (click)="deleteMusic()">
+                    Eliminar
+            </button>
+            <button 
+                mat-button 
+                class="px-4" 
+                [mat-dialog-close]="false" 
+                matTooltip="Cerrar formulario sin guardar cambios"
+                cdkFocusInitial>
+                    Cancelar
+            </button>
+        </div>
+    </div>
+</div>

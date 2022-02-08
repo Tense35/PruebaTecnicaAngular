@@ -1,0 +1,51 @@
+@import "../../utils/styles/fonts.scss";
+@import "../../utils/styles/colors.scss";
+
+h1 {
+    color: $color-primary;
+    font-family: $font-landing-bold;
+    font-size: 85px;
+    font-weight: 200;
+    line-height: 40px;
+}
+
+h3 {
+    color: $color-font;
+    font-family: $font-landing;
+    font-size: 30px;
+    line-height: 35px;
+    margin: 40px 0px;
+    text-align: center;
+}
+
+.landing-column {
+    margin-top: 30px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 1.5rem !important;
+    width: 50%;
+}
+
+@media all and (max-width: 954px) and (min-width: 10px) {
+    h1 {
+        font-size: 65px;
+    }
+    
+    h3 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}
+
+@media all and (max-width: 725px) and (min-width: 10px) {
+    .landing-image {
+        display: none
+    }
+
+    .landing-column {
+        width: 100%;
+    }
+}
